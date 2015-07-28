@@ -1,0 +1,44 @@
+@import url(http://fonts.googleapis.com/css?family=Raleway:100,400,600,800);
+@font-face {
+    font-weight: normal;
+    font-style: normal;
+    font-family: 'codropsicons';
+    src: url("../fonts/codropsicons/codropsicons.eot");
+    src: url("../fonts/codropsicons/codropsicons.eot?#iefix") format("embedded-opentype"), url("../fonts/codropsicons/codropsicons.woff") format("woff"), url("../fonts/codropsicons/codropsicons.ttf") format("truetype"), url("../fonts/codropsicons/codropsicons.svg#codropsicons") format("svg");
+}
+/************Global**************/
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: black;
+}
+
+header {
+    width: 100%;
+    position: fixed;
+    top: 0;
+}
+
+#content {
+    width: 100%;
+    margin: 0 auto;
+    padding-top: 100px;
+    background-color: pink;
+
+}
+
+footer {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    z-index: 999;
+    height: 190px;
+}
+
+.wrapper {
+    width: 100%;
+    text-align: center;
+}
+/************ end globals**************/
