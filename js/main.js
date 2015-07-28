@@ -1,8 +1,20 @@
 (function() {
 
+    var cloudPlayer = {
 
-    var id = cloud_api;
-    var cloudPlayer = new CloudPlayer(id);
+        init: function() {
+            return SC.initialize({
+                client_id: cloud_api
+            });
+        },
+        searchList: function(str, callback) {
+            SC.get('/tracks', {q: str}, function (tracks) {
+                callback(tracks);
+            });
+        }
+    };
+
+    cloudPlayer.init();
 
     $(document).ready(function () {
         console.log('workin');
@@ -27,6 +39,7 @@
                         li.innerHTML = song.title;
                         li.setAttribute('id', song.id);
                         result.appendChild(li);
+                        console.log(result);
                     };
                 });
             });
@@ -35,20 +48,6 @@
     });
 
 
-
-
-//player constructor with methods
-    function CloudPlayer(api_key){
-        SC.initialize({
-            client_id: api_key
-        });
-
-        this.searchList = function(str, callback) {
-            SC.get('/tracks', { q: str }, function(tracks) {
-                callback(tracks);
-            });
-        }
-    }
 
 }());
 
