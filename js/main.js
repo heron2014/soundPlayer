@@ -2,6 +2,9 @@
 
     var cloudPlayer = {
 
+        list: document.querySelector('#result'),
+        current: 0,
+
         init: function() {
             return SC.initialize({
                 client_id: cloud_api
@@ -11,12 +14,28 @@
             SC.get('/tracks', {q: str}, function (tracks) {
                 callback(tracks);
             });
+        },
+        play: function(str) {
+            var is_playing = false;
+            SC.stream("/tracks/" + str, function(sound){
+                sound.play();
+                is_playing = true;
+            });
+
+        },
+        pause: function(str) {
+            SC.stream("/tracks/" + str, function(sound){
+                sound.pause();
+            });
+
         }
     };
 
     cloudPlayer.init();
 
-    $(document).ready(function () {
+
+
+    $(function() {
         console.log('workin');
         var result = document.querySelector('#result');
         var searchInput = document.querySelector('#searchInput');
@@ -40,10 +59,18 @@
                         li.setAttribute('id', song.id);
                         result.appendChild(li);
                         console.log(result);
+                        li.addEventListener( 'click', function ( e ) {
+                            console.log( 'LINK was clicked' );
+                            cloudPlayer.play(li.getAttribute('id'));
+                            console.log(li.getAttribute('id'));
+
+                            e.preventDefault();
+                        }, false );
                     };
                 });
             });
         });
+
 
     });
 
